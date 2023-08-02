@@ -1,0 +1,7 @@
+FROM ubuntu:20.04
+RUN apt-get update && apt-get install git -y && apt-get install pip -y && git clone https://github.com/badtuxx/giropops-senhas.git /giropops-senhas && pip install --no-cache-dir -r /giropops-senhas/requirements.txt
+WORKDIR /giropops-senhas
+ENV REDIS_HOST=redis-server
+EXPOSE 5000
+ENTRYPOINT ["/usr/local/bin/flask"]
+CMD ["run","--host=0.0.0.0"]
